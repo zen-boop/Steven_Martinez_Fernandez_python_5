@@ -1,0 +1,42 @@
+class p:#crea la clase p
+    def __int__(s, nombre="", edad=0, correo=""):#El constructor __init__ permite inicializar los atributos nombre, edad y correo con valores predeterminados
+        s._nombre=nombre#asigna la variable con self
+        s._edad=edad#asigna la variable con self
+        s._correo=correo#asigna la variable con self
+    def sn(s, nombre):#funcion de s y nombre
+        if isinstance(nombre, str):#se realiza si el nombre es "Str"
+            s._nombre=nombre#asigna el valor
+        else:#si no se cumple se realiza esto
+            print("Nombre debe ser una cadena de texto.")#coloca que debe ser una cadena de texto
+    def se(s, edad):#funcion de s y edad
+        if isinstance(edad, int) and edad>=0:#se realiza si el numero elegido es int y mayor o igual a 0
+            s._edad = edad#asigna el valor a edad
+        else:#si no se cumple se realiza esto
+            print("Edad debe ser un número entero positivo.")#coloca que debe ser un n umero positivo
+    def sc(s, correo):#funcion de s y correo
+        if "@" and (".com" or ".gob" or ".edu" or ".gov" or ".net") in correo:#se realiza si @ y algun dominio elegido esta 
+            s._correo=correo#asigna el valor
+        else:#si no se realieza ocurre esto
+            print("Correo no válido.")#dice que no es valido
+    def nombre(s):#funcion de s
+        return s._nombre#regresa la variable
+    def edad(s):#funcion de s
+        return s._edad#regresa la variable
+    def correo(s):#funcion de s
+        return s._correo#regresa la variable
+    def m(s):#funcion de s
+        #coloca los resultados
+        print(f"Nombre: {s._nombre}")
+        print(f"Edad: {s._edad}")
+        print(f"Correo: {s._correo}")
+    def esMayorDeEdad(s):
+        return s._edad>=18#lo regresa si es mayor de edad
+pe=p()#pe es igual a p
+pe.sn(input("coloca tu nombre: "))#hace que coloque el valor a la variable
+pe.se(int(input("coloca tu edad: ")))#hace que coloque el valor a la variable
+pe.sc(input("coloca tu correo y pon algun dominio: "))#hace que coloque el valor a la variable
+pe.m()#hace que coloque el valor a la variable
+if pe.esMayorDeEdad():#compar si es mayor de edad
+    print("Es mayor de edad.")#dice que si lo es
+else:#si no se cumple se realiza
+    print("No es mayor de edad.")#dice que no
