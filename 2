@@ -1,0 +1,63 @@
+class Cuenta:
+    def __init__(self, titular, cantidad=0.0):
+        """
+        Constructor de la clase Cuenta.
+        :param titular: Nombre del titular de la cuenta.
+        :param cantidad: Cantidad inicial en la cuenta (opcional).
+        """
+        self._titular = titular
+        self._cantidad = cantidad
+    # Setters y Getters
+    def get_titular(self):
+        """
+        Devuelve el nombre del titular de la cuenta.
+        :return: Nombre del titular.
+        """
+        return self._titular
+    def get_cantidad(self):
+        """
+        Devuelve la cantidad de dinero en la cuenta.
+        :return: Cantidad de dinero.
+        """
+        return self._cantidad
+    # Método para mostrar los datos de la cuenta
+    def mostrar(self):
+        """
+        Muestra los datos de la cuenta.
+        """
+        print(f"Titular: {self._titular}")
+        print(f"Cantidad: {self._cantidad}")
+    # Método para ingresar dinero
+    def ingresar(self, cantidad):
+        """
+        Ingresa una cantidad de dinero a la cuenta.
+        Si la cantidad es negativa, no se hace nada.
+        :param cantidad: Cantidad a ingresar.
+        """
+        if cantidad > 0:
+            self._cantidad += cantidad
+        else:
+            print("La cantidad a ingresar debe ser positiva.")
+    # Método para retirar dinero
+    def retirar(self, cantidad):
+        """
+        Retira una cantidad de dinero de la cuenta.
+        La cuenta puede estar en números rojos.
+        :param cantidad: Cantidad a retirar.
+        """
+        self._cantidad -= cantidad
+# Pedir datos al usuario
+titular = input("Introduce el nombre del titular: ")
+cantidad_inicial = float(input("Introduce la cantidad inicial (opcional, presiona Enter para omitir): ") or 0)
+# Crear instancia de la clase Cuenta
+cuenta = Cuenta(titular, cantidad_inicial)
+# Mostrar datos de la cuenta
+cuenta.mostrar()
+# Ingresar dinero
+cantidad_ingresar = float(input("Introduce la cantidad a ingresar: "))
+cuenta.ingresar(cantidad_ingresar)
+cuenta.mostrar()
+# Retirar dinero
+cantidad_retirar = float(input("Introduce la cantidad a retirar: "))
+cuenta.retirar(cantidad_retirar)
+cuenta.mostrar()
