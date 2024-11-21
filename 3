@@ -1,0 +1,115 @@
+class Cuenta:
+    def __init__(self, titular, cantidad=0.0):
+        """
+        Constructor de la clase Cuenta.
+        :param titular: Nombre del titular de la cuenta.
+        :param cantidad: Cantidad inicial en la cuenta (opcional).
+        """
+        self._titular = titular
+        self._cantidad = cantidad
+    # Setters y Getters
+    def get_titular(self):
+        """
+        Devuelve el nombre del titular de la cuenta.
+        :return: Nombre del titular.
+        """
+        return self._titular
+    def get_cantidad(self):
+        """
+        Devuelve la cantidad de dinero en la cuenta.
+        :return: Cantidad de dinero.
+        """
+        return self._cantidad
+    # Método para mostrar los datos de la cuenta
+    def mostrar(self):
+        """
+        Muestra los datos de la cuenta.
+        """
+        print(f"Titular: {self._titular}")
+        print(f"Cantidad: {self._cantidad}")
+    # Método para ingresar dinero
+    def ingresar(self, cantidad):
+        """
+        Ingresa una cantidad de dinero a la cuenta.
+        Si la cantidad es negativa, no se hace nada.
+        :param cantidad: Cantidad a ingresar.
+        """
+        if cantidad > 0:
+            self._cantidad += cantidad
+        else:
+            print("La cantidad a ingresar debe ser positiva.")
+    # Método para retirar dinero
+    def retirar(self, cantidad):
+        """
+        Retira una cantidad de dinero de la cuenta.
+        La cuenta puede estar en números rojos.
+        :param cantidad: Cantidad a retirar.
+        """
+        self._cantidad -= cantidad
+class CuentaJoven(Cuenta):
+    def __init__(self, titular, edad, cantidad=0.0, bonificacion=0.0):
+        """
+        Constructor de la clase CuentaJoven.
+        :param titular: Nombre del titular de la cuenta.
+        :param edad: Edad del titular.
+        :param cantidad: Cantidad inicial en la cuenta (opcional).
+        :param bonificacion: Bonificación de la cuenta en tanto por ciento.
+        """
+        super().__init__(titular, cantidad)
+        self._edad = edad
+        self._bonificacion = bonificacion
+    # Setters y Getters para bonificación
+    def get_bonificacion(self):
+        """
+        Devuelve la bonificación de la cuenta.
+        :return: Bonificación en tanto por ciento.
+        """
+        return self._bonificacion
+    def set_bonificacion(self, bonificacion):
+        """
+        Establece la bonificación de la cuenta.
+        :param bonificacion: Bonificación en tanto por ciento.
+        """
+        self._bonificacion = bonificacion
+    # Método para verificar si el titular es válido
+    def es_titular_valido(self):
+        """
+        Verifica si el titular es mayor de edad pero menor de 25 años.
+        :return: True si el titular es válido, False en caso contrario.
+        """
+        return 18 <= self._edad < 25
+    # Método para mostrar los datos de la cuenta joven
+    def mostrar(self):
+        """
+        Muestra los datos de la cuenta joven.
+        """
+        print("Cuenta Joven")
+        super().mostrar()
+        print(f"Bonificación: {self._bonificacion}%")
+    # Método para retirar dinero
+    def retirar(self, cantidad):
+        """
+        Retira una cantidad de dinero de la cuenta si el titular es válido.
+        :param cantidad: Cantidad a retirar.
+        """
+        if self.es_titular_valido():
+            super().retirar(cantidad)
+        else:
+            print("El titular no es válido para retirar dinero.")
+# Pedir datos al usuario
+titular = input("Introduce el nombre del titular: ")
+edad = int(input("Introduce la edad del titular: "))
+cantidad_inicial = float(input("Introduce la cantidad inicial (opcional, presiona Enter para omitir): ") or 0)
+bonificacion = float(input("Introduce la bonificación de la cuenta en tanto por ciento: "))
+# Crear instancia de la clase CuentaJoven
+cuenta_joven = CuentaJoven(titular, edad, cantidad_inicial, bonificacion)
+# Mostrar datos de la cuenta joven
+cuenta_joven.mostrar()
+# Ingresar dinero
+cantidad_ingresar = float(input("Introduce la cantidad a ingresar: "))
+cuenta_joven.ingresar(cantidad_ingresar)
+cuenta_joven.mostrar()
+# Retirar dinero
+cantidad_retirar = float(input("Introduce la cantidad a retirar: "))
+cuenta_joven.retirar(cantidad_retirar)
+cuenta_joven.mostrar()
